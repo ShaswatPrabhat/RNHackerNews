@@ -9,7 +9,7 @@
 import React from "react";
 import type { Node } from "react";
 import AppWrapper from "../AppWrapper/AppWrapper";
-import { Button,  } from "react-native";
+import { Button, Linking } from "react-native";
 
 const App: () => Node = () => {
   return (
