@@ -1,4 +1,4 @@
-import { QueryClient, QueryClientProvider } from "react-query";
+import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import {
   SafeAreaView,
   ScrollView,
@@ -12,6 +12,7 @@ import {
   WrappingViewStyleWhite,
 } from "./AppWrapper.styles";
 import React from "react";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 const AppWrapper = ({ children }) => {
   const isDarkMode = useColorScheme() === "dark";
@@ -20,21 +21,25 @@ const AppWrapper = ({ children }) => {
     backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
   };
   return (
-    <QueryClientProvider client={new QueryClient()}>
-      <SafeAreaView style={backgroundStyle}>
-        <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
-        <ScrollView
-          contentInsetAdjustmentBehavior="automatic"
-          style={backgroundStyle}
-        >
-          <View
-            style={isDarkMode ? WrappingViewStyleDark : WrappingViewStyleWhite}
+    <SafeAreaProvider>
+      <QueryClientProvider client={new QueryClient()}>
+        <SafeAreaView style={backgroundStyle}>
+          <StatusBar barStyle={isDarkMode ? "light-content" : "dark-content"} />
+          <ScrollView
+            contentInsetAdjustmentBehavior="automatic"
+            style={backgroundStyle}
           >
-            {children}
-          </View>
-        </ScrollView>
-      </SafeAreaView>
-    </QueryClientProvider>
+            <View
+              style={
+                isDarkMode ? WrappingViewStyleDark : WrappingViewStyleWhite
+              }
+            >
+              {children}
+            </View>
+          </ScrollView>
+        </SafeAreaView>
+      </QueryClientProvider>
+    </SafeAreaProvider>
   );
 };
 

@@ -9,8 +9,9 @@
 import React, { useEffect, useState } from "react";
 import type { Node } from "react";
 import AppWrapper from "../AppWrapper/AppWrapper";
-import { Button, Linking, Text } from "react-native";
+import { Linking, Text } from "react-native";
 import axios from "axios";
+import { Button } from "@rneui/themed";
 
 const App: () => Node = () => {
   const [data, setData] = useState(null);
@@ -25,8 +26,8 @@ const App: () => Node = () => {
   return (
     <AppWrapper>
       <Button
-        color="red"
-        title="Fetch News"
+        type="outline"
+        title="Bubu?"
         onPress={async () => {
           await Linking.openURL("https://news.ycombinator.com/news");
         }}
